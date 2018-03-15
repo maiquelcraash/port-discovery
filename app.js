@@ -7,7 +7,8 @@ app.get('/', function(req, res) {
 	res.send({
 		"message":"Welcome to Acml Server",
 		"local_port": port,
-		"public_host": req.rawHeaders[1]
+		"headers": req.headers,
+		"rawheaders": req.rawheaders
 	});
 });
 
