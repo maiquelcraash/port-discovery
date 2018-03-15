@@ -1,14 +1,12 @@
-let express = require('express');
-let app = express();
-let port = process.env.PORT || 3000;
-let publicIP = "????";
-
-const publicIp = require('public-ip');
+let express = require('express'),
+	app = express(),
+	port = process.env.PORT || 3000,
+	exec = require('child_process').execSync;
 
 // Routes
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	res.send({
-		"message":"Welcome to Acml Server",
+		"message": "Welcome to Acml Server",
 		"local_port": port,
 		"headers": req.headers,
 		"rawheaders": req.rawheaders,
@@ -19,10 +17,11 @@ app.get('/', function(req, res) {
 // Listen
 
 app.listen(port);
-console.log('Listening on localhost:'+ port);
+console.log('Listening on localhost:' + port);
 
-publicIp.v4().then(ip => {
-	console.log(ip);
-	publicIP = ip;
-//=> '46.5.21.123'
+let run = exec('node_modules/pia/bin/pia pia -a --display-stun --specify-stun "stun.l.google.com:19302"', function(error, stdout, stderr) {
+	if(error) {
+		console.log(error, stderr);
+	}
 });
+console.log(run.toString());
