@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 		"local_port": port,
 		"headers": req.headers,
 		"rawheaders": req.rawheaders,
-		"public_ip": publicIP;
+		"public_ip": publicIP
 	});
 });
 
