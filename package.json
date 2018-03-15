@@ -9,6 +9,7 @@
   "author": "maiquel@acml.com.br",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "public-ip": "^2.4.0"
   }
 }
