@@ -10,7 +10,6 @@ app.get('/', function (req, res) {
 		"local_port": port,
 		"headers": req.headers,
 		"rawheaders": req.rawheaders,
-		"public_ip": publicIP
 	});
 });
 
@@ -19,9 +18,11 @@ app.get('/', function (req, res) {
 app.listen(port);
 console.log('Listening on localhost:' + port);
 
-let run = exec('node_modules/pia/bin/pia pia -a --display-stun --specify-stun "stun.l.google.com:19302"', function(error, stdout, stderr) {
-	if(error) {
-		console.log(error, stderr);
-	}
-});
-console.log(run.toString());
+let detecPort = setInterval(() => {
+	let run = exec('node_modules/pia/bin/pia pia -a --display-stun --specify-stun "stun.l.google.com:19302"', function (error, stdout, stderr) {
+		if (error) {
+			console.log(error, stderr);
+		}
+	});
+	console.log(run.toString());
+}, 5000);
